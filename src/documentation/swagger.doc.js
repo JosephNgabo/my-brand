@@ -3,9 +3,6 @@ const { serve, setup } = require('swagger-ui-express');
 
 const docrouter = Router();
 
-const local = process.env.LOCAL_HOST;
-const heroku = process.env.DB_CONNECT;
-
 
 const options = {
   openapi: '3.0.1',
@@ -262,7 +259,7 @@ tags: [
       }, 
     }
   },
-  '/api/blog/comment/':{
+  '/api/blog/comment/{id}':{
     post:{
       tags:['Blog'],
       description:'Comment on article blog article',
