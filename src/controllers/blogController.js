@@ -35,6 +35,7 @@ exports.createBlog = async function(req, res){
             blog.save()
             .then(result=>{
                 res.json(result)
+                
             })
             .catch(error=>console.log(error))
     } 
@@ -49,7 +50,6 @@ exports.createBlog = async function(req, res){
 };
 exports.deleteBlog = (req, res) =>{
     const {id} = req.params
-    // if(req.user.role.toString()=='admin')
     {
         Blog.deleteOne({_id:id})
         .then(result=>{
@@ -61,7 +61,6 @@ exports.deleteBlog = (req, res) =>{
         })
     }
 };
-
 exports.updateBlog = async (req, res)=>{
     const{id} =req.params
     const {title, body} = req.body;
@@ -83,18 +82,12 @@ exports.updateBlog = async (req, res)=>{
             res.status(404).json({error:'article doesn\'t exist!'})
         })
     }
-    // else
-    // {
-    //     res.status(401).json({message:'User Not Authorized'})
-    // }
+    
     }
     catch(err){
 res.json(err)
     }
 }
-
-
-
 exports.getOneBlog = (req, res)=>{
     const {id} = req.params
     {
@@ -110,13 +103,6 @@ exports.getOneBlog = (req, res)=>{
     })
     }
 }
-
-
-
-
-
-
-
 exports.commentingOnBlog=(req,res)=>{
     const {comment}=req.body
     const { blog_id}=req.params

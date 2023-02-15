@@ -9,7 +9,7 @@ const schema = mongoose.Schema({
     },
     body: {
         type: String,
-        // required: [true, 'Please add content']
+        required: [true, 'Please add content']
     },
     postedDate: String,
     imageUrl: {

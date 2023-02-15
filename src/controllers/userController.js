@@ -5,11 +5,7 @@ const bcrypt=require('bcryptjs');
 const { json } = require("express");
 
 
-
-
-// console.log(process.env.NODE_ENV)
 const createNewUser= async(req, res)=>{
-
     try {
     const validationResult = await createUserSchema.validateAsync(req.body);
     const {username, email, password} = req.body
@@ -17,9 +13,6 @@ const createNewUser= async(req, res)=>{
         if(userExist)
         
        return res.status(400).json({"success":false,message:"user email already exist"})
-
-        
-
             const salt=await bcrypt.genSalt(10)
             const hashedPassword=await bcrypt.hash(password,salt)
        
@@ -27,10 +20,8 @@ const createNewUser= async(req, res)=>{
             username:validationResult.username,
             email:validationResult.email,
             password:hashedPassword,
-            role:process.env.NODE_ENV=='test'?'admin':'admin'
-            
-        })
-    
+            role:process.env.NODE_ENV=='test'?'admin':'admin'        
+        })   
          res.status(201).json({success:true,
             user:newUser 
         })
@@ -48,7 +39,6 @@ const createNewUser= async(req, res)=>{
 catch (error) {
         res.status(400).json({"success":false,message:error.message})
     }
-
 }
 
 const loginUser=async (req, res)=>{
@@ -70,7 +60,7 @@ const loginUser=async (req, res)=>{
 
     } catch (error) {
         res.json({"success":false,message:error}).status(400)
-        // console.log(error);
+       
     }
 }
 

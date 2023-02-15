@@ -1,6 +1,5 @@
 const uploader=require('../config/cloudinary');
 
-
 const blogImage = async (req) => {
     try {
         const tmp = req.files.photo.tempFilePath;
@@ -14,6 +13,4 @@ const blogImage = async (req) => {
         console.log(error);
     }
 };
-
-
 module.exports = blogImage;

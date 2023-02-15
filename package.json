@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    
     "dev": "nodemon index.js",
-    "test": "cross-env NODE_ENV=test PORT=5000 mocha --timeout 10000 ./test/**.test.js  --exit"
+    "test": "cross-env NODE_ENV=test PORT=5000 mocha --timeout 10000 ./test/**.test.js  --exit",
+    "coverage": "nyc nyc --reporter=html --reporter=text --reporter=json-summary npm run test",
+    "coverage:badge": "coverage-badge-creator"
   },
   "author": "",
   "license": "ISC",
@@ -16,15 +17,21 @@
     "chai-http": "^4.3.0",
     "cloudinary": "^1.33.0",
     "cors": "^2.8.5",
+    "coverage-badge-creator": "^1.0.17",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "express-fileupload": "^1.4.0",
+    "istanbul": "^0.4.5",
     "joi": "^17.7.0",
     "jsonwebtoken": "^9.0.0",
     "mocha": "^10.2.0",
     "mongoose": "^6.9.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "path": "^0.12.7",
+    "sinon": "^15.0.1",
+    "swagger-ui-express": "^4.6.0"
   }
 }
