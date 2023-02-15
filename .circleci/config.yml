@@ -13,7 +13,7 @@ jobs:
           command: npm install mocha nyc chai-http chai
       - run:
           name: Run Unit Tests
-          command: npm coverage
+          command: npm run coverage
      
 workflows:
   build_tests:
