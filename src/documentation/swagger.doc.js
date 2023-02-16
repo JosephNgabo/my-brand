@@ -383,7 +383,7 @@ tags: [
             type: 'string',
             description: "Article title",
           },
-          content: {
+          body: {
             type: 'string',
             description: "Article content",
           },
