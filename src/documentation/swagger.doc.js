@@ -3,6 +3,9 @@ const { serve, setup } = require('swagger-ui-express');
 
 const docrouter = Router();
 
+const local = process.env.LOCAL_HOST;
+const heroku = process.env.DB_CONNECT;
+
 
 const options = {
   openapi: '3.0.1',
@@ -159,7 +162,7 @@ tags: [
     //    },
     //   ],
       requestBody: {
-        body: {
+        content: {
           'multipart/form-data': {
             schema: {
               $ref: '#/components/schemas/Blog',
@@ -222,7 +225,7 @@ tags: [
       }, 
     }
   },
-  '/api/blog/{id}':{
+  '/api/blog/delete/{id}':{
     delete:{
       tags:['Blog'],
       description:'Delete blog article',
@@ -259,7 +262,7 @@ tags: [
       }, 
     }
   },
-  '/api/blog/comment/{id}':{
+  '/api/blog/comment/':{
     post:{
       tags:['Blog'],
       description:'Comment on article blog article',
