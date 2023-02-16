@@ -381,15 +381,15 @@ tags: [
         properties: {
           title: {
             type: 'string',
-            description: "Article title",
+            description: "Blog title",
           },
           body: {
             type: 'string',
-            description: "Article content",
+            description: "Blog content",
           },
           photo: {
             type: 'string',
-            description: "Article image url",
+            description: "Blog image url",
             format: 'binary'
           }
       },
