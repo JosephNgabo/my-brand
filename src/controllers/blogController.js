@@ -16,7 +16,7 @@ exports.getAllBlogs = function(req, res){
 }
 exports.createBlog = async function(req, res){
     try {
-        const {title,body}=req.body
+        const {title, body}=req.body
         console.log(title, body)
         const validationResult = await blogSchema.validateAsync(req.body);
         
