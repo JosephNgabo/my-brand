@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet" />
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <section class="header">
+    <div class="container">
+      <div class="row-noChange">
+        <div class="log">
+          <a href="index.html">
+            <h1>Ntwari Dev</h1>
+          </a>
+        </div>
+        <div class="side">
+          <div class="user" id="userDiv">
+            Admin
+            <span>
+              <img src="./images/ant-design_caret-down-filled.png" alt="" />
+            </span>
+            <div class="user-profile">
+              <h4>
+                <button onclick="logOut()" id="logoutBtn"> logout  </button>
+              </h4>
+            </div>
+          </div>
+          <div class="mobile-nav">
+            <img src="./bx_menu.png" alt="" id="showMenu" />
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu">
+        <a href="#" onclick="showMenu()">
+          <div class="menu-item">Dashboard</div>
+        </a>
+
+        <a href="./new-blog.html" onclick="showMenu()">
+          <div class="menu-item">New Blog</div>
+
+        </a>
+        
+
+        <a href="./view-blog.html" onclick="showMenu()">
+          <div class="menu-item">View Blog</div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="body">
+    <div class="row-start">
+      <div class="menu">
+        <a href="#">
+          <div class="menu-item">
+            <img src="" alt="" /> Dashboard
+          </div>
+        </a>
+        <hr />
+        <a href="new-blog.html">
+          <div class="menu-item">
+            <img src="" alt="" /> New Blog
+          </div>
+        </a>
+        <hr />
+        <a href="./view-blog.html">
+          <div class="menu-item">
+            <img src="" alt="" /> View Blog
+          </div>
+        </a>
+        <hr />
+      </div>
+      <div class="content">
+        <h1>Dashboard</h1>
+        <hr />
+        <div class="box">
+          <div class="box-item">
+            <img src="./images/dashicons_admin-post.png" alt="" />
+            <h1>3 Posts</h1>
+          </div>
+          <div class="box-item">
+            <img src="./images/fa-solid_comment-dots.png" alt="" />
+            
+            <h1>3 Comments</h1>
+          </div>
+          <div class="box-item">
+            <img src="./images/Vector (2).png" alt="" />
+            <h1>100 Messages</h1>
+          </div>
+        </div>
+        <div class="feedback" >
+          <h1>Messages</h1>
+          
+          <div class="feedback-items" id="messageContainer">
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>subject</th>
+                  <th>conditions</th>
+                  <th>messages</th>
+                  <th><img id ="img" src="./delete.png" style=" height: 40px;width: 40px;" onclick="deletePost('${element.id}')"></th>
+                </tr>
+              </thead>
+              <tbody id="feedback">
+                <tr>
+                   <td ></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+               </tr>
+        </tbody>
+             
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const messagesData = document.getElementById('feedback');
+let oldMessages = JSON.parse(localStorage.getItem('messages'))?? []
+console.log(oldMessages);
+oldMessages.forEach((message, index) => {
+    messagesData.insertAdjacentHTML(
+      "beforebegin",
+`<tr>
+     <td>${index+1}</td>
+    <td>${message.name}</td>
+    <td>${message.email}</td>
+    <td>${message.phone}</td>
+    <td>${message.subject}</td>
+    <td>${message.message}</td>
+     <td>${message.conditions}</td>
+    <td><a href="mailto:${message.email}">Reply</a></td>
+    <td><i class="fa fa-trash-o delete" data-id=${message.id}></i></td>
+</tr>
+`
+)})
+  </script>
+<script src="./dashboard.js"></script>
+</body>
+
+</html>

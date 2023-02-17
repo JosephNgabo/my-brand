@@ -1,0 +1,125 @@
+.sign-up {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+    background-color: black;
+    width: 100%;
+    height: auto;
+  }
+  .signup form .account {
+    margin: 15px;
+    color: #d9d9d9;
+    font-weight: bold;
+    font-size: 8px;
+  }
+  .signup form .account span {
+    /* color: rgba(233, 189, 35, 1); */
+    font-weight: bolder;
+    font-size: 8px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+*:before {
+  -moz-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  background: #075680;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+}
+
+
+.form-box {
+    width: 700px;
+    background: #14a9d6;
+    padding: 60px;
+    border-radius: 10px;
+  }
+  .input-row {
+    position: relative;
+    margin-bottom: 13px;
+  }
+  .form-box input:not([type="submit"], [type="checkbox"]),
+  .form-box textarea,
+  .form-box select {
+    width: 100%;
+    margin: 0 0 3px;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: gray;
+    border-radius: 5px;
+    border: 1px solid transparent;
+  }
+  .form-box textarea {
+    height: 70px;
+  }
+  .form-box input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .check_label {
+    padding-left: 25px;
+  }
+  .form-box input[type="submit"] {
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 0;
+    color: #fff;
+    background: #075680;
+  }
+  .form-box input[type="submit"]:hover {
+    background: #000;
+  }
+  .error {
+    display: block;
+    font-weight: 700;
+    color: crimson;
+    display: none;
+  }
+  @media only screen and (max-width: 876px
+  ){
+    .form-box {
+      width: 400px;
+      background: #14a9d6;
+      border-radius: 10px;
+    }
+   .input-row {
+      position: relative;
+      margin-bottom: 13px;
+    }
+
+  }
+  
+
+
+
+
+
+  @media only screen and (max-width: 400px){
+    .form-box {
+      width: 150px;
+      background: #14a9d6;
+      border-radius: 10px;
+    }
+   .input-row {
+      position: relative;
+      margin-bottom: 13px;
+    }
+
+  }
+  

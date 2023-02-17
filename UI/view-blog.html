@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet" />
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <section class="header">
+    <div class="container">
+      <div class="row-noChange">
+        <div class="log">
+          <a href="dashboard.html">
+            <h1>Ntwali Dev</h1>
+          </a>
+        </div>
+        <div class="side">
+          <div class="user" id="userDiv">
+            Admin
+            <span>
+              <img src="./images/ant-design_caret-down-filled.png" alt="" />
+            </span>
+            <div class="user-profile">
+              <h4>
+                <a href="#" id="logoutBtn"> logout</a>
+              </h4>
+            </div>
+          </div>
+          <div class="mobile-nav">
+            <img src="./bx_menu.png" alt="" id="showMenu" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="./dashboard.html" onclick="showMenu()">
+        <div class="menu-item">Dashboard</div>
+      </a>
+
+      <a href="./new-blog.html" onclick="showMenu()">
+        <div class="menu-item">New Blog</div>
+      </a>
+
+      <a href="#" onclick="showMenu()">
+        <div class="menu-item">View Blog</div>
+      </a>
+    </div>
+    </div>
+  </section>
+  <section class="body">
+    <div class="row-start">
+      <div class="menu">
+        <a href="dashboard.html">
+          <div class="menu-item">
+            <img src="" alt="" /> Dashboard
+          </div>
+        </a>
+        <hr />
+        <a href="./new-blog.html">
+          <div class="menu-item">
+            <img src="" alt="" /> New Blog
+          </div>
+        </a>
+        <hr />
+        <a href="#">
+          <div class="menu-item">
+            <img src="" alt="" /> View Blog
+          </div>
+        </a>
+        <hr />
+      </div>
+      <div class="content">
+        <h1>View Articles</h1>
+        <hr />
+        <div 
+        <div class="article-form" >
+          <table border="1">
+            <i class="fas fa-download"></i>
+            <!-- <thead>
+              <tr>
+                <th>Blog Title  </th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody id="articles">
+
+            </tbody> -->
+            <div id="result">
+
+            </div>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const getArticles = () => {
+        let articles = JSON.parse(localStorage.getItem("articles")) ?? []
+        let articlesContainer = document.getElementById("result")
+        let data = ''
+        articles.forEach(element => {
+            data += `<div class="blogItem">
+                <p><img src="${element.image}"
+                    style="width:400px;height:230px;border-radius: 2rem 2rem 0 0;margin-top:2rem;"></p>
+                            <p class="card-title">
+                                ${element.title}</p>
+                                <p class="card-text"> ${element.body}</p>
+                                <p style="text-align:center;margin-bottom:1rem;"></p>
+                              <a href='./new-blog.html' onclick="updatePost('${element.id}','${element.title}','${element.body}')">  <img src="./kindpng_1541177.png" style=" height: 40px;width: 40px;"></a>
+                            <img id ="img" src="./delete.png" style=" height: 40px;width: 40px;" onclick="deletePost('${element.id}')">
+
+                            </h2>
+                            </div>
+                        `
+        });
+        articlesContainer.innerHTML = data
+        }
+        getArticles()
+    
+        const deletePost=(id)=>{
+          let articles = JSON.parse(localStorage.getItem("articles")) ?? []
+          const newArticles=articles.filter(item=>item.id!=id)
+          localStorage.setItem('articles',JSON.stringify(newArticles))
+          location.reload()
+        }
+        const updatePost=(id,title,body)=>{
+          const artcle={
+            id,
+            title,
+            body
+          }
+          localStorage.setItem('updateArticle',JSON.stringify(artcle))
+        }
+
+    </script>
+
+
+  <!-- <script src="./"></script> -->
+  <!-- <script src="./newblog.js"></script> -->
+
+</body>
+</html>

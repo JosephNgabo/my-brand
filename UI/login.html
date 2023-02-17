@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> -->
+    <link rel="stylesheet" href="main.css">
+    <title>Login</title>
+</head>
+<body>
+   <form class="form-container" onsubmit="event.preventDefault(); validate()">
+    <p class="error" id="error"></p>
+    <h3>Login</h3>
+    <div class="form-grp">
+    <label for="=username">Username</label>
+    <input type="text" name="username" placeholder="Username" id="user">  
+    <i class="fa fa-times u_times"></i>
+    <i class="fa fa-check u_check"></i>
+    </div>
+    <div class="form-grp">
+    <label for="=username">Password</label>
+    <input type="password" name="password" placeholder="Password" id="pass">  
+    <i class="fa fa-times u_times"></i>
+    <i class="fa fa-check u_check"></i>
+    </div>
+    <div class="form-grp" >
+    <input type="submit" name="login-btn" value="Login"  id="btn" >
+    <button href="./signup.html">Signup</button>
+    <p class="Login Successfully" id="success"></p>  
+    <!-- <p  class="result" id="result">Welcome_Again</p> -->
+    </div>
+   </form>
+  
+<script src="./login.js"></script>
+</body>
+</html>

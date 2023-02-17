@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet" /> -->
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <section class="header">
+    <div class="container">
+      <div class="row-noChange">
+        <div class="log">
+          <a href="index.html">
+            <h1>Ntwali Dev</h1>
+          </a>
+        </div>
+        <div class="side">
+          <div class="user" id="userDiv">
+            Admin
+            <span>
+              <!-- <img src="./images/ant-design_caret-down-filled.png" alt="" /> -->
+            </span>
+            <div class="user-profile">
+              <h4>
+                <a href="#" id="logoutBtn"> logout</a>
+              </h4>
+            </div>
+          </div>
+          <div class="mobile-nav">
+            <img src="./bx_menu.png" alt="" id="showMenu" />
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu">
+        <a href="dashboard.html" onclick="showMenu()">
+          <div class="menu-item">Dashboard</div>
+        </a>
+
+        <a href="#" onclick="showMenu()">
+          <div class="menu-item">New Blog</div>
+        </a>
+
+        <a href="./view-blog.html" onclick="showMenu()">
+          <div class="menu-item">View Blog</div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="body">
+    <div class="row-start">
+      <div class="menu">
+        <a href="dashboard.html">
+          <div class="menu-item">
+            <img src="" alt="" /> Dashboard
+          </div>
+        </a>
+        <hr />
+        <a href="#">
+          <div class="menu-item">
+            <img src="" alt="" /> New Blog
+          </div>
+        </a>
+        <hr />
+        <a href="./view-blog.html">
+          <div class="menu-item">
+            <img src="" alt="" /> View Blog
+          </div>
+        </a>
+        <hr />
+      </div>
+      <div class="content">
+        <h1>Adding New Blog</h1>
+        <hr />
+        <div class="article-form">
+          <form enctype="multipart/form-data" id="newArticles"  onsubmit="return submits()">
+            <div>
+              <h4>Blog Title</h4>
+              <input type="text" id="title" name="title" placeholder="  Blog Title"/>
+            </div>
+            <div id="cover">
+              <h4>Cover Image</h4>
+              <input type="file" id="fileInput" name="image" />
+            </div>
+            <div>
+              <h4>Body</h4>
+              <textarea type="text" placeholder="body Title" rows="5" id="body" name="body" ></textarea>
+            </div>
+            <div>
+              <h4>Tag</h4>
+              <select name="tag" id="tag" >
+                <option>Technology</option>
+                <option>Adventures</option>
+                <option>News blog</option>
+              </select>
+            </div>
+            <input type="submit" id="submitBtn" value="Create" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+<script src="./newblog.js"></script>
+<script>
+  // function update (id) {
+  //   let blog =JSON.parse(window.localStorage.getItem("Blogs"));
+  //   const title = document.getElementById('title').value
+  //   const cover = window.localStorage.getItem("tempImage") || blog [id].cover
+  //   const body = quill.root.innerHTML
+  //   if (title.length > 500) {
+  //     popContact("Title too long ", "red")
+  //   } else {
+  //     const blogData = {
+  //       title: title,
+  //       cover: cover,
+  //       body: body,
+  //     }
+  //     if (id > -1) {
+  //       blog.splice(id, 1);
+  //       window.localStorage.setItem("blogs", JSON.stringify(blog));
+  //     }
+  //     blog.push(blogData);
+  //     localStorage.setItem('Blogs', JSON.stringify(blog));
+  //     var element = document.getElementById("frm");
+  //     element.reset()
+  //       popContact("Blog edited", "green")
+  //       window.localStorage.removeItem(tempImage)
+  //       location.href = "./view-blog.html"
+      
+  //   }
+  // }
+
+
+
+
+  const updateArticle=JSON.parse(localStorage.getItem('updateArticle')) || null
+  if(updateArticle ==null){
+   
+    document.getElementById('newArticles').addEventListener('submit', (event) => {
+      event.preventDefault()
+      submits()
+    }
+      )
+  }
+  else{ 
+    document.getElementById('cover').style.display='none'
+    document.getElementById('body').value=updateArticle.body
+    document.getElementById('title').value=updateArticle.title
+    document.getElementById('submitBtn').value="Save Change"
+
+    document.getElementById('newArticles').addEventListener('submit',(event)=>{
+    event.preventDefault()
+    const title=document.getElementById('title').value
+    const body=document.getElementById('body').value
+    let articles=JSON.parse(localStorage.getItem('articles')) ?? []
+    const article=articles.filter(item=>item.id==updateArticle.id)
+    articles=articles.filter(item=>item.id!=updateArticle.id)
+    
+
+    // const newArticles = {
+    //   // id: id,
+    //   title: title,
+    //   body: title,
+    // }
+    // // finalArticles.push(article)
+    // // console.log(finalArticles)
+    // // console.log(newArticles)
+
+    //  const deletePost = (title);
+    // newArticles.length!=0? newArticles.push(article):newArticles=article
+    // localStorage.removeItem('articles')
+    // localStorage.setItem('articles',JSON.stringify(newArticles))
+    // window.open('view-blog.html','_self')
+    // return false
+
+   console.log(article)
+    
+          const Article = {
+            id:article[0].id,
+            title,
+            body,
+            image: article[0].image,
+            // comments: updateArticle[0].comments,
+            // likes: updateArticle[0].likes,
+            // postedDate: updateArticle[0].postedDate,
+          };
+          console.log(Article);
+          articles.push(Article);
+          localStorage.setItem("articles", JSON.stringify(articles));
+          localStorage.removeItem("updateArticle")
+          window.open("./view-blog.html", "self");
+        
+  })
+  }
+
+  // document.getElementById('newArticles').addEventListener('submit',update())
+</script>
+</body>
+
+</html>
