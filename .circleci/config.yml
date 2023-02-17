@@ -9,16 +9,16 @@ jobs:
       - checkout
       - run:
           name: Install npm dependencies
-          command: cd Backend-server && npm install 
+          command:  npm install 
       - run:
           name: Install npm dev dependencies
-          command: cd Backend-server && npm install mocha nyc chai-http chai
+          command: npm install mocha nyc chai-http chai
       - run:
           name: Run Unit Tests
-          command: cd Backend-server && npm run coverage
+          command: npm run coverage
       - run:
           name: Upload coverage to Coveralls
-          command: cd Backend-server && npx coveralls < coverage/lcov.info
+          command: npx coveralls < coverage/lcov.info
 workflows:
   build_tests:
     jobs:
