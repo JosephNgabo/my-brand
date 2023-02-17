@@ -73,7 +73,7 @@ exports.updateBlog = async (req, res)=>{
             if(title)
             Blog.title=title;
             if(body)
-            Blog.body=content
+            Blog.body=body
             Blog.save()
             .then(result=>res.status(200).json(result))
             .catch(error=>console.log(error))
@@ -116,6 +116,7 @@ exports.commentingOnBlog=(req,res)=>{
 
     Blog.findOne({_id:blog_id})
     .then(article=>{
+        console.log(article);
         if(article)
         {
             article.comment.push(newComment);

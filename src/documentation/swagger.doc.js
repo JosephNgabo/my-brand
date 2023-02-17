@@ -197,7 +197,7 @@ tags: [
       ],
       requestBody: {
         content: {
-          'application/json': {
+          'multipart/form-data': {
             schema: {
               $ref: '#/components/schemas/Blog',
             },
@@ -262,11 +262,18 @@ tags: [
       }, 
     }
   },
-  '/api/blog/comment/':{
+  '/api/blog/comment/{blog_id}':{
     post:{
       tags:['Blog'],
       description:'Comment on article blog article',
-      parameters: [],
+      parameters: [
+        {
+           "in": "path",
+         "name": "blog_id",
+          required: true,
+        }
+      ],
+      
       requestBody: {
         content: {
           'application/json': {
@@ -274,7 +281,6 @@ tags: [
               $ref: '#/components/schemas/Blog',
             },
             example: {
-              Blog_id:"6251374247c7a6f93bdd52e7",
               comment:"that content is very helpful thanks"
             },
           },
@@ -391,6 +397,10 @@ tags: [
             type: 'string',
             description: "Blog image url",
             format: 'binary'
+          },
+          comment: {
+            type: 'string',
+            description: "Adding comment on blog"
           }
       },
     },

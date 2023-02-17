@@ -7,9 +7,9 @@ const blogSchema=joi.object({
 })
 
 const updateBlogSchema=joi.object({
-    article_id:joi.string().required(),
+    Blog_id:joi.string().required(),
     title:joi.string().min(10),
-    content:joi.string().min(20)
+    body:joi.string().min(20)
 })
 
 const createUserSchema=joi.object({
