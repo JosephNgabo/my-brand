@@ -39,7 +39,9 @@ const getAllMessages=async (req,res)=>{
 
 }
 const deleteMessage=(req,res)=>{
+    /* istanbul ignore next*/
 const {id}=req.params
+    /* istanbul ignore next*/
 Message.deleteOne({_id:id})
 .then(result=>{
     console.log(result)

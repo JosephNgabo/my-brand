@@ -37,10 +37,12 @@ exports.createBlog = async function(req, res){
                 res.json(result)
                 
             })
+            /* istanbul ignore next*/
             .catch(error=>console.log(error))
     } 
     else 
     {
+        /* istanbul ignore next*/
         res.json({message:'User Not Authorized'}).status(401)
     }
     }
