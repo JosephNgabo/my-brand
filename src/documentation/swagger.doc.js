@@ -399,10 +399,7 @@ tags: [
             description: "Blog image url",
             format: 'binary'
           },
-          comment: {
-            type: 'string',
-            description: "Adding comment on blog"
-          }
+          
       },
     },
       Message: {
