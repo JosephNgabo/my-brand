@@ -82,7 +82,6 @@ exports.updateBlog = async (req, res)=>{
             res.status(404).json({error:'article doesn\'t exist!'})
         })
     }
-    
     }
     catch(err){
 res.json(err)

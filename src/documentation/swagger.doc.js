@@ -133,7 +133,7 @@ tags: [
       }, 
       } 
   },
-  '/api/blog/add':{
+  '/api/blog/add/':{
     post:{
       tags:['Blog'],
       description:'Create new blog article',
@@ -203,7 +203,7 @@ tags: [
             },
             example: {
               title: 'testing blog article title update',
-              content: 'testing blog article content update',
+              body: 'testing blog article content update',
             },
           },
         },
@@ -274,7 +274,7 @@ tags: [
               $ref: '#/components/schemas/Blog',
             },
             example: {
-              article_id:"6251374247c7a6f93bdd52e7",
+              Blog_id:"6251374247c7a6f93bdd52e7",
               comment:"that content is very helpful thanks"
             },
           },

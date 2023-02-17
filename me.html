@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Frontend Example</title>
+  </head>
+  <body>
+    <div id="data"></div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const dataDiv = document.getElementById('data');
+      axios.get('http://localhost:3000/api/data')
+        .then(response => {
+          const data = response.data;
+          dataDiv.innerHTML = `Name: ${data.name}, Age: ${data.age}, City: ${data.city}`;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    </script>
+  </body>
+</html>
