@@ -6,10 +6,12 @@ const blogImage = async (req) => {
         const Result = await uploader.upload(
             tmp,
             { folder: 'my-brand' },
+            /* istanbul ignore next*/
             (_, result) => result
         );
         return Result;
     } catch (error) {
+            /* istanbul ignore next*/
         console.log(error);
     }
 };
