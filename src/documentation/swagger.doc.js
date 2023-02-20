@@ -45,7 +45,7 @@ tags: [
                 username: 'Ntwali Joseph',
                 email: 'admin@gmail.com',
                 password: '123456',
-                role: 'admin',
+              
               },
             },
           },
