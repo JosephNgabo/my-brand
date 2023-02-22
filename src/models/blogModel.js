@@ -16,24 +16,8 @@ const schema = mongoose.Schema({
         type: String,
     },
     comment:[{
-		user_id:{
 			type: mongoose.Schema.Types.ObjectId,
-			// required:true,
-			ref:"User",
-		},
-		username:{
-			type:String,
-			// required:true
-		},
-		comment:{
-			type:String,
-			// required:[true,'Please add a comment'],
-		},
-		postedDate:{
-			type:String,
-			// required:true
-		}
-	}
-	],
+			ref:"comments"
+	}],
 })
 module.exports = mongoose.model("blog", schema);

@@ -2,6 +2,7 @@ const { blogSchema, updateBlogSchema} =require('../helpers/validation_schema')
 const Blog = require('../models/blogModel')
 const imageUpload = require('../helpers/photoUpload');
 const { json } = require('body-parser');
+const Comments = require('../models/commentmodel');
 
 var today = new Date()
 var dd = String(today.getDate()).padStart(2, "0");
@@ -93,10 +94,12 @@ exports.updateBlog = async (req, res)=>{
 res.json(err)
     }
 }
+
+
 exports.getOneBlog = (req, res)=>{
     const {id} = req.params
     {
- Blog.findOne({_id:id})
+ Blog.findOne({_id:id}).populate('comment')
     .then(result=>{
         if(result)
         res.json(result)
@@ -108,33 +111,39 @@ exports.getOneBlog = (req, res)=>{
     })
     }
 }
-exports.commentingOnBlog=(req,res)=>{
+exports.commentingOnBlog=async(req,res)=>{
     const {comment}=req.body
     const { blog_id}=req.params
-    const user_id=req.user._id
+    // const user_id=req.user._id
 
-    const newComment={
-        user:user_id,
-        username:req.user.username,
-        comment,
-        postedDate: today
-    }
-
-    Blog.findOne({_id:blog_id})
-    .then(article=>{
-        console.log(article);
-        if(article)
-        {
-            article.comment.push(newComment);
-            article.save()
-            .then(result=>res.json(result))
-            /* istanbul ignore if*/
-            .catch(error=>res.status(500).json({error:error.message}))
-        }
-            /* istanbul ignore if*/
-        else res.status(404).json({error:"article doesn't exist"})
+    // const newComment={
+        username=req.user.username;
+        // comment=comment,
+    // }
+    // res.json(newComment)
+    const result= await Comments.create({blogId:blog_id,username:username,comment:comment})
+    await Blog.findById(blog_id)
+    .then((post)=>{
+     post.comment.unshift(result._id)
+     post.save()
+     res.status(200).json({"Message":"comment Added","data":result._id})
     })
+    // res.json(result);
+    // Blog.findOne({_id:blog_id})
+    // .then(article=>{
+    //     console.log(article);
+    //     if(article)
+    //     {
+    //         article.comment.push(newComment);
+    //         article.save()
+    //         .then(result=>res.json(result))
+    //         /* istanbul ignore if*/
+    //         .catch(error=>res.status(500).json({error:error.message}))
+    //     }
+    //         /* istanbul ignore if*/
+    //     else res.status(404).json({error:"article doesn't exist"})
+    // })
     /* istanbul ignore if*/
-    .catch(error=>res.status(500).json({error:error.message}))
+    // .catch(error=>res.status(500).json({error:error.message}))
 }
 

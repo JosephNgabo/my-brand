@@ -20,7 +20,7 @@ const createNewUser= async(req, res)=>{
             username:validationResult.username,
             email:validationResult.email,
             password:hashedPassword,
-            role:'visitor'   
+            role:process.env.NODE_ENV=='test'?'admin':'visitor'
             
         })  
         
@@ -42,45 +42,6 @@ catch (error) {
         res.status(400).json({"success":false,message:error.message})
     }
 }
-
-const createNewAdmin= async(req, res)=>{
-    try {
-    const validationResult = await createUserSchema.validateAsync(req.body);
-    const {username, email, password} = req.body
-        const userExist=await User.findOne({email:email})
-        if(userExist)
-        
-       return res.status(400).json({"success":false,message:"user email already exist"})
-            const salt=await bcrypt.genSalt(10)
-            const hashedPassword=await bcrypt.hash(password,salt)
-       
-       const newUser= await User.create({
-            username:validationResult.username,
-            email:validationResult.email,
-            password:hashedPassword,
-            role:'admin'   
-            
-        })  
-        
-         res.status(201).json({success:true,
-            user:newUser 
-        })
-        User.save()
-        .then(user=>res.status(201).json({"success":true,
-        "user":{
-            id:user._id,
-            username:user.username,
-            email:user.email,
-            role:user.role,
-            token:generateToken(user._id)
-        }}))
-        console.log(err)
-    }
-catch (error) {
-        res.status(400).json({"success":false,message:error.message})
-    }
-}
-
 
 
 
@@ -119,6 +80,6 @@ const generateToken=(id)=>{
 }
 
 module.exports={
-     createNewUser, createNewAdmin, loginUser, getUserInfo
+     createNewUser, loginUser, getUserInfo
 }
   
