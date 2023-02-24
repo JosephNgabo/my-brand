@@ -10,7 +10,18 @@ const { json } = require('express');
 const PORT=process.env.PORT || 5000;
 const app = express()
 dbConnect();
-app.use(cors());
+app.use(cors({
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+      'DELETE',
+      'PATCH'
+    ],
+  
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With','Authentication']
+  }));
 app.use(json());
 app.use(fileUploader({useTempFiles: true}));
 
