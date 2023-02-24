@@ -5,7 +5,7 @@ const router=express.Router()
 
 router.post('/send', sendMessage)
 
-router.get('/', getAllMessages)
+router.get('/',protect , getAllMessages)
 
 router.delete('/delete/:id',protect , deleteMessage)
 
